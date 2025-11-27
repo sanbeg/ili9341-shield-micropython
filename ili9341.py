@@ -69,18 +69,25 @@ class Display:
         
         sleep_ms(50)
         
+    @micropython.viper
     def draw_rect(self, col:int, row:int, width:int, height:int, color:int):
         self.cmd_data(0x2a, row >> 8, row & 0xFF, ((row+height-1) >> 8), ((row+height-1) & 0xFF))
         self.cmd_data(0x2b, col >> 8, col & 0xFF, ((col+width-1) >> 8), ((col+width-1) & 0xFF))
      
         lcd_write = self._lcd_write
+        wr = self._wr
+        emitter = self._emitter
         chigh = color >> 8
         clow = color & 0xFF
 
         self.cmd_data(0x2c)
         for i in range(0, width * height):
-            lcd_write(chigh)
-            lcd_write(clow)
+            wr.off()
+            emitter.emit(chigh)
+            wr.on()
+            wr.off()
+            emitter.emit(clow)
+            wr.on()
 
 class Colors:
     BLACK   = 0x0000

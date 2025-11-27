@@ -40,3 +40,4 @@ class NucleoEmitter:
         stm.mem32[stm.GPIOA + stm.GPIO_BSRR] = da
         stm.mem32[stm.GPIOB + stm.GPIO_BSRR] = db
         stm.mem32[stm.GPIOC + stm.GPIO_BSRR] = dc
+

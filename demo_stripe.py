@@ -13,7 +13,6 @@ LCD_CS = Pin.board.A3
 LCD_RST = Pin.board.A4
 
 #data pins
-#data pins
 LCD_D0 = Pin.board.D8 #a9
 LCD_D1 = Pin.board.D9 #c7
 LCD_D2 = Pin.board.D2 #a10

@@ -8,10 +8,10 @@ class GenericParallelEmitter:
             pin.init(pin.OUT)
 
     @micropython.viper
-    def emit(self, data: int):
-        emit_bit = self._emit_bit
+    def emit(self, data:int):
         pins = self._pins
         d = int(data)
+
         pins[0].value((data >> 0) & 1)
         pins[1].value((data >> 1) & 1)
         pins[2].value((data >> 2) & 1)
