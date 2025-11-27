@@ -7,22 +7,17 @@ class GenericParallelEmitter:
         for pin in self._pins:
             pin.init(pin.OUT)
 
-    @staticmethod
     @micropython.viper
-    def _emit_bit(data: int, pin, bit: int):
-        boolean = (data & (1<<bit)) > 0
-        pin.value(boolean)
-    
     def emit(self, data: int):
         emit_bit = self._emit_bit
         pins = self._pins
         d = int(data)
-        emit_bit(d, pins[0], 0)
-        emit_bit(d, pins[1], 1)
-        emit_bit(d, pins[2], 2)
-        emit_bit(d, pins[3], 3)
-        emit_bit(d, pins[4], 4)
-        emit_bit(d, pins[5], 5)
-        emit_bit(d, pins[6], 6)
-        emit_bit(d, pins[7], 7)
+        pins[0].value((data >> 0) & 1)
+        pins[1].value((data >> 1) & 1)
+        pins[2].value((data >> 2) & 1)
+        pins[3].value((data >> 3) & 1)
+        pins[4].value((data >> 4) & 1)
+        pins[5].value((data >> 5) & 1)
+        pins[6].value((data >> 6) & 1)
+        pins[7].value((data >> 7) & 1)
     
