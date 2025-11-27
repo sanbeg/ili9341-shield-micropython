@@ -23,7 +23,7 @@ class NucleoEmitter:
 
     @staticmethod
     @micropython.viper
-    def emit(data):  
+    def emit(data: int):  
         dc = 0
         da = 0
         db = 0

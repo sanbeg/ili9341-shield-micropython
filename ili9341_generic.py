@@ -9,11 +9,11 @@ class GenericParallelEmitter:
 
     @staticmethod
     @micropython.viper
-    def _emit_bit(data, pin, bit):
-        boolean = (int(data) & (1<<int(bit))) > 0
+    def _emit_bit(data: int, pin, bit: int):
+        boolean = (data & (1<<bit)) > 0
         pin.value(boolean)
     
-    def emit(self, data):
+    def emit(self, data: int):
         emit_bit = self._emit_bit
         pins = self._pins
         d = int(data)

@@ -15,20 +15,20 @@ class Display:
         
         emitter.init()
         
-    def _lcd_write(self, data):
+    def _lcd_write(self, data:int):
         self._wr.off()
         self._emitter.emit(data)
         self._wr.on()
 
-    def cmd_write(self, d):
+    def cmd_write(self, data:int):
         self._rs.off()
-        self._lcd_write(d)
+        self._lcd_write(data)
         
-    def data_write(self, d):
+    def data_write(self, data:int):
         self._rs.on()
-        self._lcd_write(d)
+        self._lcd_write(data)
         
-    def cmd_data(self, cmd, *data):
+    def cmd_data(self, cmd, *data:int):
         self._rs.off()
         self._lcd_write(cmd)
 
@@ -70,7 +70,7 @@ class Display:
         
         sleep_ms(50)
         
-    def draw_rect(self, col, row, width, height, color):
+    def draw_rect(self, col:int, row:int, width:int, height:int, color:int):
         self.cmd_data(0x2a, row >> 8, row & 0xFF, ((row+height-1) >> 8), ((row+height-1) & 0xFF))
         self.cmd_data(0x2b, col >> 8, col & 0xFF, ((col+width-1) >> 8), ((col+width-1) & 0xFF))
      
