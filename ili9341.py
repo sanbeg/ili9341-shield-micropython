@@ -42,10 +42,9 @@ class Display:
         self.cmd_data(0x2c, color)
 
         wr = self._wr
-        for y in range(0, 38400): # 240*320/2
-            for z in range(0, 84):
-                wr.off()
-                wr.on()
+        for y in range(0, 38400 * 4): # 240*320/2
+            wr.off()
+            wr.on()
 
     def init(self):
         rst = self._rst
@@ -79,10 +78,9 @@ class Display:
         clow = color & 0xFF
 
         self.cmd_data(0x2c)
-        for i in range(0, width):
-            for j in range(0, height):
-                lcd_write(chigh)
-                lcd_write(clow)
+        for i in range(0, width * height):
+            lcd_write(chigh)
+            lcd_write(clow)
 
 class Colors:
     BLACK   = 0x0000
