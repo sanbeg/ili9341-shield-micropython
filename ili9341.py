@@ -82,12 +82,8 @@ class Display:
 
         self.cmd_data(0x2c)
         if clow == chigh:
-            wr.off()
             emit(chigh)
-            wr.on()
-            wr.off()
-            wr.on()
-            for i in range(0, width * height - 1):
+            for i in range(0, width * height):
                 wr.off()
                 wr.on()
                 wr.off()

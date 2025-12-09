@@ -37,7 +37,8 @@ class NucleoEmitter:
         db = db | (db ^ int(_MASKB)) << 16
         dc = dc | (dc ^ int(_MASKC)) << 16
         
-        stm.mem32[stm.GPIOA + stm.GPIO_BSRR] = da
-        stm.mem32[stm.GPIOB + stm.GPIO_BSRR] = db
-        stm.mem32[stm.GPIOC + stm.GPIO_BSRR] = dc
+        mem32 = stm.mem32        
+        mem32[stm.GPIOA + stm.GPIO_BSRR] = da
+        mem32[stm.GPIOB + stm.GPIO_BSRR] = db
+        mem32[stm.GPIOC + stm.GPIO_BSRR] = dc
 
