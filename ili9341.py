@@ -76,18 +76,30 @@ class Display:
      
         lcd_write = self._lcd_write
         wr = self._wr
-        emitter = self._emitter
+        emit = self._emitter.emit
         chigh = color >> 8
         clow = color & 0xFF
 
         self.cmd_data(0x2c)
-        for i in range(0, width * height):
+        if clow == chigh:
             wr.off()
-            emitter.emit(chigh)
+            emit(chigh)
             wr.on()
             wr.off()
-            emitter.emit(clow)
             wr.on()
+            for i in range(0, width * height - 1):
+                wr.off()
+                wr.on()
+                wr.off()
+                wr.on()
+        else:
+            for i in range(0, width * height):
+                wr.off()
+                emit(chigh)
+                wr.on()
+                wr.off()
+                emit(clow)
+                wr.on()
 
 class Colors:
     BLACK   = 0x0000
@@ -99,3 +111,32 @@ class Colors:
     YELLOW  = 0xFFE0
     WHITE   = 0xFFFF
     ORANGE  = 0xFE29
+
+class FastColors:
+    BLACK   = 0x0000
+    BLUE    = 0x1818
+    RED     = 0xE8E8
+    GREEN   = 0x0707
+    CYAN    = 0x5F5F
+    MAGENTA = 0xB8B8
+    YELLOW  = 0xE6E6
+    WHITE   = 0xFFFF
+    ORANGE  = 0xE2E2
+    # addition
+    DARK_GREEN  = 0x0404
+    WHEAT       = 0xF6F6
+    TURQUOISE   = 0x3737
+    DARK_SLATE  = 0x2A2A
+    LIME        = 0x4646
+    INDIGO      = 0x5050
+    STEEL       = 0x5D5D
+    PURPLE      = 0x7070
+    LIGHT_SLATE = 0x7474
+    SKY         = 0x7E7E
+    BRICK       = 0x8080
+    BURLYWOOD   = 0x8B8B
+    KHAKI       = 0xACAC
+    GRAY        = 0xB5B5
+    SLATE2      = 0xBEBE
+    LIGHT_CYAN  = 0xDFDF
+    THISTLE     = 0xFEFE

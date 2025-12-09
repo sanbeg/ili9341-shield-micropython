@@ -1,4 +1,4 @@
-from ili9341 import Display, Colors
+from ili9341 import Display, Colors, FastColors
 from ili9341_stm import NucleoEmitter
 from ili9341_generic import GenericParallelEmitter
 
@@ -39,8 +39,33 @@ def demo():
     lcd.draw_rect(280,0,40,240, Colors.BLACK)# BLACK
     
     print(f"Elapsed time ms={ticks_ms()-start}")
-    
 
+def fast_demo():
+    start = ticks_ms()
+    lcd.draw_rect(0,0,40,240, FastColors.WHITE)# white
+    lcd.draw_rect(40,0,40,240, FastColors.YELLOW)# yellow
+    lcd.draw_rect(80,0,40,240, FastColors.CYAN)# cyan
+    lcd.draw_rect(120,0,40,240, FastColors.GREEN)# green
+    lcd.draw_rect(160,0,40,240, FastColors.MAGENTA)# magenta
+    lcd.draw_rect(200,0,40,240, FastColors.RED)# red
+    lcd.draw_rect(240,0,40,240, FastColors.BLUE)# blue
+    lcd.draw_rect(280,0,40,240, FastColors.BLACK)# BLACK
+    
+    print(f"Elapsed time ms={ticks_ms()-start}")
+
+
+def fast_demo2():
+    start = ticks_ms()
+    lcd.draw_rect(0,0,40,240, FastColors.WHITE)# white
+    lcd.draw_rect(40,0,40,240, FastColors.WHEAT)# yellow
+    lcd.draw_rect(80,0,40,240, FastColors.CYAN)# cyan
+    lcd.draw_rect(120,0,40,240, FastColors.GREEN)# green
+    lcd.draw_rect(160,0,40,240, FastColors.PURPLE)# magenta
+    lcd.draw_rect(200,0,40,240, FastColors.BRICK)# red
+    lcd.draw_rect(240,0,40,240, FastColors.BLUE)# blue
+    lcd.draw_rect(280,0,40,240, FastColors.BLACK)# BLACK
+    
+    print(f"Elapsed time ms={ticks_ms()-start}")
 
 def restart(fast = True):
     global lcd
